@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Einkaufsliste</string>
+    <string name="list_name">Name</string>
+    <string name="title_activity_lists">Listen</string>
+    <string name="item_name">Name</string>
+    <string name="delete_list">Liste löschen</string>
+    <string name="clear_list">Liste leeren</string>
+    <string name="clear_checked">Erledigte löschen</string>
+    <string name="check_all">Alle erledigen</string>
+    <string name="uncheck_all">Keine erledigen</string>
+    <string name="sort_color">Nach Farbe sortieren</string>
+    <string name="itemname_empty">Der Name darf nicht leer sein</string>
+    <string name="itemname_exists">Der Gegenstand befindet sich schon auf der Liste</string>
+    <string name="share_list">Liste teilen</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="item_color_dialog">Farbe wählen</string>
+    <string name="dialog_delete_list">Soll diese Liste wirklich gelöscht werden?</string>
+    <string name="dialog_clear_list">Soll die Liste wirklich geleert werden?</string>
+    <string-array name="unit_array">
+        <item></item>
+        <item>st</item>
+        <item>g</item>
+        <item>kg</item>
+        <item>ml</item>
+        <item>l</item>
+    </string-array>
+
+</resources>

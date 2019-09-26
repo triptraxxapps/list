@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Shopping List</string>
+    <string name="list_name">Name</string>
+    <string name="title_activity_lists">Lists</string>
+    <string name="item_name">Name</string>
+    <string name="delete_list">delete list</string>
+    <string name="clear_list">clear list</string>
+    <string name="clear_checked">delete completed</string>
+    <string name="check_all">complete all</string>
+    <string name="uncheck_all">complete none</string>
+    <string name="sort_color">sort colors</string>
+    <string name="itemname_empty">field name must not be empty</string>
+    <string name="itemname_exists">This item is already on the list</string>
+    <string name="share_list">Share list</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="item_color_dialog">Choose Item Color</string>
+    <string name="dialog_delete_list">Do you really want to delete this list?</string>
+    <string name="dialog_clear_list">Do you really want to clear this list?</string>
+    <string-array name="unit_array">
+        <item></item>
+        <item>pc</item>
+        <item>g</item>
+        <item>kg</item>
+        <item>ml</item>
+        <item>l</item>
+    </string-array>
+
+</resources>
