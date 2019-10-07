@@ -59,6 +59,7 @@ public class Storage extends SQLiteOpenHelper {
                 + Item.ITEM_AMOUNT + "' real,'"
                 + Item.ITEM_COLOR + "' integer,'"
                 + Item.ITEM_CHECKED + "' bool NOT NULL,'"
+                + Item.ITEM_UNIT  + "' text,'"
                 + Item.ITEM_LIST + "' integer NOT NULL REFERENCES '" + ShoppingList.LIST_TABLE + "' ('" + ShoppingList.LIST_ID + "'));");
 
         db.execSQL("CREATE TABLE '" + Item.ITEM_META_TABLE + "' ('"
