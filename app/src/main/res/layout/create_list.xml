@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     tools:context="com.shopping.bine.einkaufsliste.CreateList">
 
     <EditText
@@ -13,14 +14,20 @@
         android:hint="@string/list_name"
         android:ems="10"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/listName"
-        android:layout_toEndOf="@+id/listName"
         android:id="@+id/new_list_name" />
 
-    <Button
-        android:text="@android:string/ok"
+    <!-- Button
+        android:id="@+id/create_list_ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/white"
+        android:onClick="onClickSaveList"
+        android:text="@android:string/ok" / -->
+
+    <ImageButton
         android:id="@+id/create_list_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/add_dark_bkg"
         android:onClick="onClickSaveList"/>
 </LinearLayout>

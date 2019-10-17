@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.shopping.bine.einkaufsliste">
+    package="com.shopping.bine">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -11,34 +11,41 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CreateList" />
+        <activity android:name=".widget.WidgetActivity"></activity>
+        <activity android:name=".einkaufsliste.CreateList" />
         <activity
-            android:name=".Lists"
+            android:name=".einkaufsliste.Lists"
             android:label="@string/title_activity_lists"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:launchMode="singleInstance" >
-
+            android:launchMode="singleInstance"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ListDetail" />
-        <activity android:name=".Import"
+        <activity android:name=".einkaufsliste.ListDetail" />
+        <activity
+            android:name=".einkaufsliste.Import"
             android:launchMode="singleInstance">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <action android:name="android.intent.action.VIEW" />
-                <data android:mimeType="application/json"/>
-                <data android:scheme="content"/>
+
+                <data android:mimeType="application/json" />
+                <data android:scheme="content" />
             </intent-filter>
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <action android:name="android.intent.action.VIEW" />
-                <data android:mimeType="text/*"/>
-                <data android:scheme="content"/>
+
+                <data android:mimeType="text/*" />
+                <data android:scheme="content" />
             </intent-filter>
         </activity>
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.shopping.bine.einkaufsliste.fileprovider"
@@ -48,6 +55,26 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
+        <receiver android:name=".widget.WidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info" />
+        </receiver>
+
+        <service
+            android:name=".widget.ListViewWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <activity android:name=".widget.WidgetConfigure">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

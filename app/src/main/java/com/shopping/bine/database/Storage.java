@@ -195,6 +195,19 @@ public class Storage extends SQLiteOpenHelper {
         return items;
     }
 
+    public Item getItemById(long id){
+        Item i = null;
+        SQLiteDatabase dbCon = getReadableDatabase();
+        Cursor cursor = dbCon.query(Item.ITEM_TABLE, ALL_ITEM_COLUMNS,
+                Item.ITEM_ID + " = ?", new String[]{Long.toString(id)}, null, null, null);
+        if(cursor.moveToFirst()) {
+            i = cursorToItem(cursor);
+        }
+        cursor.close();
+        dbCon.close();
+        return i;
+    }
+
     public void deleteShoppingList(long listId){
         final SQLiteDatabase dbCon = getWritableDatabase();
         dbCon.delete(Item.ITEM_TABLE, Item.ITEM_LIST + " = ?", new String[]{Long.toString(listId)});

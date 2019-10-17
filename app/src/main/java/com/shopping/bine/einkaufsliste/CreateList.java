@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.shopping.bine.R;
 import com.shopping.bine.database.Storage;
 
 public class CreateList extends AppCompatActivity {

@@ -1,6 +1,8 @@
 package com.shopping.bine.einkaufsliste;
 
 import android.app.AlertDialog;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -18,6 +20,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -26,10 +29,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.shopping.bine.R;
 import com.shopping.bine.database.Storage;
 import com.shopping.bine.io.ExportImportList;
 import com.shopping.bine.pojos.Item;
 import com.shopping.bine.pojos.ShoppingList;
+import com.shopping.bine.widget.WidgetProvider;
 import com.skydoves.colorpickerpreference.ColorEnvelope;
 import com.skydoves.colorpickerpreference.ColorListener;
 import com.skydoves.colorpickerpreference.ColorPickerDialog;
@@ -112,6 +117,9 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
 
         tvItemName = (TextView)findViewById(R.id.new_item_name);
         tvItemAmount = (TextView)findViewById(R.id.new_item_amount);
+        // Hide soft keybord on activity start
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
     }
 
     public void onClickSaveItem(View v){
@@ -134,6 +142,7 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
         adapter.notifyDataSetChanged();
         tvItemName.setText("");
         tvItemAmount.setText("1");
+        updateWidgets();
     }
 
     @Override
@@ -148,9 +157,15 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
         storage.updateItem(i);
         sortList(items);
         adapter.notifyDataSetChanged();
+        updateWidgets();
     }
 
     private void sortList(List<Item> sortItems){
+
+        items = sortList(sortItems, items);
+    }
+
+    public static List<Item> sortList(List<Item> sortItems, List<Item> itemList){
         List<Item> checked = new ArrayList<Item>();
         List<Item> unchecked = new ArrayList<Item>();
         for(Item i : sortItems){
@@ -159,13 +174,14 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
             else
                 unchecked.add(i);
         }
-        items.clear();
+        itemList.clear();
         for(Item i : unchecked){
-            items.add(i);
+            itemList.add(i);
         }
         for(Item i : checked){
-            items.add(i);
+            itemList.add(i);
         }
+        return itemList;
     }
 
     @Override
@@ -218,6 +234,7 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
                                 storage.deleteItemsByList(shoppingList.id);
                                 items.clear();
                                 adapter.notifyDataSetChanged();
+                                updateWidgets();
                             }
                         })
                         .setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
@@ -240,6 +257,7 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
                     items.add(i);
                 }
                 adapter.notifyDataSetChanged();
+                updateWidgets();
                 break;
             case  R.id.action_check_all:
                 for(Item i : items){
@@ -247,6 +265,7 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
                     storage.updateItem(i);
                 }
                 adapter.notifyDataSetChanged();
+                updateWidgets();
                 break;
             case R.id.action_uncheck_all:
                 for(Item i : items){
@@ -254,6 +273,7 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
                     storage.updateItem(i);
                 }
                 adapter.notifyDataSetChanged();
+                updateWidgets();
                 break;
             case R.id.action_share_list:
                 if(!ExportImportList.running) {
@@ -309,5 +329,18 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
             }
         });
         builder.show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    private void updateWidgets(){
+        Intent intent = new Intent(this, WidgetProvider.class);
+        intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+        int ids[] = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
+        sendBroadcast(intent);
     }
 }

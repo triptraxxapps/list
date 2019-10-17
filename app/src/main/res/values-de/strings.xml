@@ -25,5 +25,10 @@
         <item>ml</item>
         <item>l</item>
     </string-array>
-
+    <string name="widget_background">Hintergrundfarbe des Widgets</string>
+    <string name="widget_background_light">Hell</string>
+    <string name="widget_background_dark">Dunkel</string>
+    <string name="widget_background_transparent">Transparent</string>
+    <string name="widget_list">Liste des Widgets</string>
+    <string name="configure_widget">Widget einrichten</string>
 </resources>

@@ -25,5 +25,12 @@
         <item>ml</item>
         <item>l</item>
     </string-array>
+    <string name="widget_background">Background Color of the widget</string>
+    <string name="widget_background_light">light</string>
+    <string name="widget_background_dark">dark</string>
+    <string name="widget_background_transparent">transparent</string>
+    <string name="widget_list">List to be displayed in the widget</string>
+    <string name="configure_widget">Configure the widget</string>
+
 
 </resources>

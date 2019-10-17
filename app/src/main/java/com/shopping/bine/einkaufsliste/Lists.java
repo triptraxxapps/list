@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.shopping.bine.R;
 import com.shopping.bine.database.Storage;
 import com.shopping.bine.pojos.ShoppingList;
 
@@ -21,7 +22,7 @@ public class Lists extends Activity {
 
     private static final String TAG = Lists.class.getSimpleName();
     private Storage storage;
-    private ArrayAdapter adapter;
+    private ListAdapter adapter;
     private List<ShoppingList> list;
     private ListView listview;
 
@@ -43,7 +44,7 @@ public class Lists extends Activity {
 
         listview = (ListView) findViewById(R.id.shopplists);
         list =  storage.getAllShoppingLists();
-        adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, list);
+        adapter = new ListAdapter(this,android.R.layout.simple_list_item_1, 0, list);
         adapter.setNotifyOnChange(true);
         listview.setAdapter(adapter);
 
@@ -61,7 +62,6 @@ public class Lists extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d(TAG, "on Resume");
         list.clear();
         List<ShoppingList> tmpList = storage.getAllShoppingLists();
         for(ShoppingList sl : tmpList){
