@@ -31,6 +31,7 @@
     <string name="widget_background_transparent">transparent</string>
     <string name="widget_list">List to be displayed in the widget</string>
     <string name="configure_widget">Configure the widget</string>
+    <string name="widget_no_data">No data to be displayed</string>
 
 
 </resources>

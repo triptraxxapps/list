@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
@@ -32,7 +33,6 @@ class ListViewRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
     private List<Item> records;
     private Storage storage;
     private long listId;
-    private static final int COLOR_GRAY = -6710887;
     private static final int COLOR_BLUE = -13551186;
     private static final int COLOR_BRIGHT_BLUE = -16720385;
 
@@ -45,7 +45,6 @@ class ListViewRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
         listId = intent.getLongExtra(WidgetProvider.EXTRA_APPWIDGET_LIST, -1);
         appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, 0);
         color = intent.getStringExtra("color");
-        Log.d(TAG, "color "+color);
     }
     public void onCreate() {
         fetchData();
@@ -65,13 +64,13 @@ class ListViewRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
             else
                 rv.setInt(R.id.widget_item, "setTextColor", i.color);
         else
-            rv.setInt(R.id.widget_item, "setTextColor", COLOR_GRAY);
+            rv.setInt(R.id.widget_item, "setTextColor", ListDetail.COLOR_GRAY);
 
         rv.setTextViewText(R.id.widget_item, i.name);
         Bundle extras = new Bundle();
         extras.putInt(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
         Intent fillInIntent = new Intent();
-        fillInIntent.putExtra(WidgetActivity.EXTRA_HS_LIST, i.id);
+        fillInIntent.putExtra(WidgetService.EXTRA_HS_LIST, i.id);
         fillInIntent.putExtras(extras);
         rv.setOnClickFillInIntent(R.id.widget_item, fillInIntent);
         return rv;

@@ -48,6 +48,7 @@ import java.util.List;
 public class ListDetail extends AppCompatActivity implements AdapterView.OnItemClickListener, TextWatcher {
 
     private static final String TAG = ListDetail.class.getSimpleName();
+    public static final int COLOR_GRAY = -6710887;
     private Storage storage;
     private ShoppingList shoppingList;
     private ItemAdapter adapter;
@@ -136,6 +137,8 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
                 return;
             }
         }
+        if(textColor == 0)
+            textColor = COLOR_GRAY;
         long id = storage.saveItem(itemName, Float.parseFloat(itemAmount), unit, textColor,false, shoppingList.id);
         sortList(storage.getItemsByList(shoppingList.id));
 
@@ -212,6 +215,7 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
                         .setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 storage.deleteShoppingList(shoppingList.id);
+                                updateWidgets();
                                 onBackPressed();
                             }
                         })

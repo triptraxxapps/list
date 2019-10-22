@@ -1,42 +1,58 @@
 package com.shopping.bine.widget;
 
+import android.app.Service;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.os.IBinder;
 import android.util.Log;
 
 import com.shopping.bine.database.Storage;
 import com.shopping.bine.pojos.Item;
 
-public class WidgetActivity extends AppCompatActivity {
+public class WidgetService extends Service {
 
-    final static String TAG = WidgetActivity.class.getName();
+    private static final String TAG = WidgetService.class.getSimpleName();
     public final static String EXTRA_HS_LIST = "homescreen_list";
     private Storage storage;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
-        Bundle bundle = getIntent().getExtras();
+
+    @Override
+    public IBinder onBind(Intent arg0) {
+        return null;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        handleEvent(intent);
+        return super.onStartCommand(intent, flags, startId);
+    }
+
+    private void handleEvent(Intent intent) {
+        Bundle bundle = intent.getExtras();
         if (bundle != null) {
             if(bundle.get(EXTRA_HS_LIST) != null){
-                storage = new Storage(this);
                 long id = (long) bundle.get(EXTRA_HS_LIST);
+                storage = new Storage(this);
                 Item i = storage.getItemById(id);
-                if(i.isChecked){
-                    i.isChecked = false;
-                }else{
-                    i.isChecked = true;
+                if(i != null) {
+                    if (i.isChecked) {
+                        i.isChecked = false;
+                    } else {
+                        i.isChecked = true;
+                    }
+                    storage.updateItem(i);
                 }
-                storage.updateItem(i);
             }
         }
         updateWidget();
-        moveTaskToBack(true);
-        finish();
     }
 
     private void updateWidget(){

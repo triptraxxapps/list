@@ -7,15 +7,19 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
+import android.view.View;
 import android.widget.RemoteViews;
 
 import com.shopping.bine.R;
+import com.shopping.bine.database.Storage;
 import com.shopping.bine.einkaufsliste.Lists;
 
 public class WidgetProvider extends AppWidgetProvider {
 
     final static String TAG = WidgetProvider.class.getName();
     final static String EXTRA_APPWIDGET_LIST = "appwidgetList";
+
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
@@ -26,32 +30,36 @@ public class WidgetProvider extends AppWidgetProvider {
     }
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
+        Storage storage = new Storage(context);
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
         String color = WidgetConfigure.loadColorPref(context, appWidgetId);
         long listId = WidgetConfigure.loadListPref(context, appWidgetId);
-
-        Intent listIntent = new Intent(context, ListViewWidgetService.class);
-        listIntent.putExtra(EXTRA_APPWIDGET_LIST, listId);
-        listIntent.putExtra("color", color);
-        listIntent.setData(Uri.parse(listIntent.toUri(Intent.URI_INTENT_SCHEME)));
-
+        if(storage.getShoppingListById(listId) == null || storage.getItemsByList(listId).size() == 0){
+            views.setInt(R.id.widget_msg, "setVisibility", View.VISIBLE);
+        }else {
+            views.setInt(R.id.widget_msg, "setVisibility", View.GONE);
+            Intent listIntent = new Intent(context, ListViewWidgetService.class);
+            listIntent.putExtra(EXTRA_APPWIDGET_LIST, listId);
+            listIntent.putExtra("color", color);
+            listIntent.setData(Uri.parse(listIntent.toUri(Intent.URI_INTENT_SCHEME)));
+            views.setRemoteAdapter(R.id.hs_list, listIntent);
+        }
         if(context.getResources().getString(R.string.widget_background_light).equals(color)) {
             views.setInt(R.id.widget_root, "setBackgroundResource", R.color.widgetLight);
-            views.setInt(R.id.to_list, "setBackgroundResource", R.color.widgetLight);
+//            views.setInt(R.id.to_list, "setBackgroundResource", R.color.widgetLight);
         }else if(context.getResources().getString(R.string.widget_background_dark).equals(color)) {
             views.setInt(R.id.widget_root, "setBackgroundResource", R.color.widgetDark);
-            views.setInt(R.id.to_list, "setBackgroundResource", R.color.widgetDark);
+//            views.setInt(R.id.to_list, "setBackgroundResource", R.color.widgetDark);
         }
-        views.setRemoteAdapter(R.id.hs_list, listIntent);
 
         //go to app when button is pressed
         Intent intent = new Intent(context, Lists.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
-        views.setOnClickPendingIntent(R.id.to_list, pendingIntent);
+        views.setOnClickPendingIntent(R.id.widget_root, pendingIntent);
         //strike item when item is klicked
-        Intent startActivityIntent = new Intent(context,WidgetActivity.class);
-        PendingIntent startActivityPendingIntent = PendingIntent.getActivity(context, 0, startActivityIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        views.setPendingIntentTemplate(R.id.hs_list, startActivityPendingIntent);
+        Intent serviceIntent = new Intent(context, WidgetService.class);
+        PendingIntent pi = PendingIntent.getService(context, 0, serviceIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        views.setPendingIntentTemplate(R.id.hs_list, pi);
 
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
