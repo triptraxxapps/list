@@ -26,7 +26,7 @@ public class Item implements Comparable<Item>{
     public static final String ITEM_META_TABLE = "item_meta";
     public static final String ITEM_META_ID = "id";
     public static final String ITEM_META_NAME = "name";
-
+    public static final String UNCHECKED_ITEM_QUERY = "select count(*) from " + ITEM_TABLE + " where " + ITEM_LIST + " = ? and checked = 0;";
 
 
     @Override

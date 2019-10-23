@@ -8,4 +8,5 @@
     <color name="header_widget_light">#E0E0DF</color>
     <color name="background">#F7F6EE</color>
     <color name="background_listdetail">#E0E0DF</color>
+    <color name="item_count">#54DC39</color>
 </resources>

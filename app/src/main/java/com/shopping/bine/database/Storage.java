@@ -241,4 +241,19 @@ public class Storage extends SQLiteOpenHelper {
         dbCon.close();
         return itemNames;
     }
+
+    public int getUncheckedListItems(long listId){
+        List<Item> items = new ArrayList<Item>();
+
+        SQLiteDatabase dbCon = getReadableDatabase();
+        Cursor cursor = dbCon.rawQuery(Item.UNCHECKED_ITEM_QUERY, new String[]{String.valueOf(listId)});
+        int count = 0;
+        if(cursor.moveToFirst()) {
+            count = cursor.getInt(0);
+        }
+        cursor.close();
+        dbCon.close();
+        return count;
+
+    }
 }
