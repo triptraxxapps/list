@@ -3,10 +3,14 @@ package com.shopping.bine.widget;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.res.Configuration;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -22,7 +26,20 @@ public class WidgetProvider extends AppWidgetProvider {
 
 
     @Override
+    public void onRestored(Context context, int[] oldWidgetIds, int[] newWidgetIds) {
+        Log.d(TAG, "onRestored");
+        super.onRestored(context, oldWidgetIds, newWidgetIds);
+    }
+
+    @Override
+    public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Bundle newOptions) {
+        Log.d(TAG, "onAppWidgetOptionsChanged");
+        super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions);
+    }
+
+    @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+        Log.d(TAG, "onUpdate");
         final int N = appWidgetIds.length;
         for (int i=0; i<N; i++) {
             updateAppWidget(context, appWidgetManager, appWidgetIds[i]);
@@ -67,7 +84,8 @@ public class WidgetProvider extends AppWidgetProvider {
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
-        if (intent.getAction().equals("android.appwidget.action.APPWIDGET_UPDATE")) {
+        Log.d(TAG, "onReceive ");
+        if (intent.getAction().equals("android.appwidget.action.APPWIDGET_UPDATE") || intent.getAction().equals("android.appwidget.action.APPWIDGET_UPDATE_OPTIONS")) {
 
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
             ComponentName thisWidget = new ComponentName(context, WidgetProvider.class);
@@ -75,7 +93,11 @@ public class WidgetProvider extends AppWidgetProvider {
             appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.hs_list);
 
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
-            appWidgetManager.updateAppWidget(appWidgetIds, views);
+            for(int i = 0; i < appWidgetIds.length; i++){
+                updateAppWidget(context, appWidgetManager, appWidgetIds[i]);
+            }
+//            appWidgetManager.updateAppWidget(appWidgetIds, views);
         }
     }
+
 }

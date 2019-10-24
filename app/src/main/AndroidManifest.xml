@@ -43,6 +43,22 @@
                 <data android:mimeType="text/*" />
                 <data android:scheme="content" />
             </intent-filter>
+            <intent-filter>
+                <category android:name="android.intent.category.ALTERNATIVE" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <data android:mimeType="text/*" />
+                <data android:scheme="content" />
+            </intent-filter>
+            <intent-filter>
+                <category android:name="android.intent.category.ALTERNATIVE" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <data android:mimeType="application/json" />
+                <data android:scheme="content" />
+            </intent-filter>
         </activity>
 
         <provider
@@ -58,6 +74,7 @@
         <receiver android:name=".widget.WidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.CONFIGURATION_CHANGED" />
             </intent-filter>
 
             <meta-data
