@@ -3,10 +3,9 @@ package com.shopping.bine.einkaufsliste;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.util.Log;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
 import android.widget.ListView;
 

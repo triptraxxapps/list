@@ -1,21 +1,12 @@
 package com.shopping.bine.einkaufsliste;
 
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.shopping.bine.io.ExportImportList;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 public class Import extends AppCompatActivity {
 

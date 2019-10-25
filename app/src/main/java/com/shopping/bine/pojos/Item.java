@@ -1,6 +1,6 @@
 package com.shopping.bine.pojos;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Created by bine on 06.12.18.

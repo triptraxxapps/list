@@ -16,5 +16,5 @@
         android:orderInCategory="100" app:showAsAction="ifRoom" />
     <item android:id="@+id/action_share_list" android:title="@string/share_list"
         android:orderInCategory="100" app:showAsAction="never"
-        app:actionProviderClass="android.support.v7.widget.ShareActionProvider" />
+        app:actionProviderClass="androidx.appcompat.widget.ShareActionProvider" />
 </menu>
