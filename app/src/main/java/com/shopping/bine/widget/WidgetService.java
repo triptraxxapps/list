@@ -1,9 +1,11 @@
 package com.shopping.bine.widget;
 
+import android.app.Notification;
 import android.app.Service;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
@@ -27,6 +29,11 @@ public class WidgetService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            int NOTIFICATION_ID = (int) (System.currentTimeMillis()%10000);
+            String channelId = WidgetService.class.getName();
+            startForeground(NOTIFICATION_ID, new Notification.Builder(this, channelId).build());
+        }
     }
 
     @Override

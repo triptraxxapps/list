@@ -3,15 +3,11 @@ package com.shopping.bine.widget;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
-import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -27,19 +23,16 @@ public class WidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onRestored(Context context, int[] oldWidgetIds, int[] newWidgetIds) {
-        Log.d(TAG, "onRestored");
         super.onRestored(context, oldWidgetIds, newWidgetIds);
     }
 
     @Override
     public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Bundle newOptions) {
-        Log.d(TAG, "onAppWidgetOptionsChanged");
         super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions);
     }
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        Log.d(TAG, "onUpdate");
         final int N = appWidgetIds.length;
         for (int i=0; i<N; i++) {
             updateAppWidget(context, appWidgetManager, appWidgetIds[i]);
@@ -63,10 +56,8 @@ public class WidgetProvider extends AppWidgetProvider {
         }
         if(context.getResources().getString(R.string.widget_background_light).equals(color)) {
             views.setInt(R.id.widget_root, "setBackgroundResource", R.color.widgetLight);
-//            views.setInt(R.id.to_list, "setBackgroundResource", R.color.widgetLight);
         }else if(context.getResources().getString(R.string.widget_background_dark).equals(color)) {
             views.setInt(R.id.widget_root, "setBackgroundResource", R.color.widgetDark);
-//            views.setInt(R.id.to_list, "setBackgroundResource", R.color.widgetDark);
         }
 
         //go to app when button is pressed
@@ -75,16 +66,18 @@ public class WidgetProvider extends AppWidgetProvider {
         views.setOnClickPendingIntent(R.id.widget_root, pendingIntent);
         //strike item when item is klicked
         Intent serviceIntent = new Intent(context, WidgetService.class);
-        PendingIntent pi = PendingIntent.getService(context, 0, serviceIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pi = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O)
+            pi = PendingIntent.getForegroundService(context, 0, serviceIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        else
+            pi = PendingIntent.getService(context, 0, serviceIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         views.setPendingIntentTemplate(R.id.hs_list, pi);
-
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
-        Log.d(TAG, "onReceive ");
         if (intent.getAction().equals("android.appwidget.action.APPWIDGET_UPDATE") || intent.getAction().equals("android.appwidget.action.APPWIDGET_UPDATE_OPTIONS")) {
 
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
@@ -96,7 +89,6 @@ public class WidgetProvider extends AppWidgetProvider {
             for(int i = 0; i < appWidgetIds.length; i++){
                 updateAppWidget(context, appWidgetManager, appWidgetIds[i]);
             }
-//            appWidgetManager.updateAppWidget(appWidgetIds, views);
         }
     }
 
