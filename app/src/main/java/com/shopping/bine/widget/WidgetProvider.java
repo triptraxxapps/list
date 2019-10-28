@@ -14,6 +14,7 @@ import android.widget.RemoteViews;
 import com.shopping.bine.R;
 import com.shopping.bine.database.Storage;
 import com.shopping.bine.einkaufsliste.Lists;
+import com.shopping.bine.pojos.ShoppingList;
 
 public class WidgetProvider extends AppWidgetProvider {
 
@@ -44,16 +45,21 @@ public class WidgetProvider extends AppWidgetProvider {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
         String color = WidgetConfigure.loadColorPref(context, appWidgetId);
         long listId = WidgetConfigure.loadListPref(context, appWidgetId);
-        if(storage.getShoppingListById(listId) == null || storage.getItemsByList(listId).size() == 0){
+        ShoppingList sl = storage.getShoppingListById(listId);
+        if(sl != null){
+            views.setTextViewText(R.id.widget_list_name, sl.name);
+            if(storage.getItemsByList(listId).size() == 0){
+                views.setInt(R.id.widget_msg, "setVisibility", View.VISIBLE);
+            }else {
+                views.setInt(R.id.widget_msg, "setVisibility", View.GONE);
+                Intent listIntent = new Intent(context, ListViewWidgetService.class);
+                listIntent.putExtra(EXTRA_APPWIDGET_LIST, listId);
+                listIntent.putExtra("color", color);
+                listIntent.setData(Uri.parse(listIntent.toUri(Intent.URI_INTENT_SCHEME)));
+                views.setRemoteAdapter(R.id.hs_list, listIntent);
+            }
+        }else
             views.setInt(R.id.widget_msg, "setVisibility", View.VISIBLE);
-        }else {
-            views.setInt(R.id.widget_msg, "setVisibility", View.GONE);
-            Intent listIntent = new Intent(context, ListViewWidgetService.class);
-            listIntent.putExtra(EXTRA_APPWIDGET_LIST, listId);
-            listIntent.putExtra("color", color);
-            listIntent.setData(Uri.parse(listIntent.toUri(Intent.URI_INTENT_SCHEME)));
-            views.setRemoteAdapter(R.id.hs_list, listIntent);
-        }
         if(context.getResources().getString(R.string.widget_background_light).equals(color)) {
             views.setInt(R.id.widget_root, "setBackgroundResource", R.color.widgetLight);
         }else if(context.getResources().getString(R.string.widget_background_dark).equals(color)) {
