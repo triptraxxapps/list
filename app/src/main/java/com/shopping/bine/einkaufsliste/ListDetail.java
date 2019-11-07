@@ -5,6 +5,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -314,8 +315,9 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
     public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
     public void onClickChooseColor(View v) {
-        ColorPickerDialog.Builder builder = new ColorPickerDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_DARK);
-        builder.getColorPickerView().setPaletteDrawable(getResources().getDrawable(R.drawable.palettebar));
+        ColorPickerDialog.Builder builder = new ColorPickerDialog.Builder(this, android.R.style.Theme_DeviceDefault_Dialog);
+
+        builder.getColorPickerView().setPaletteDrawable(getDrawable(R.drawable.palettebar));
         builder.setTitle(R.string.item_color_dialog);
         builder.setPositiveButton(getString(R.string.ok), new ColorListener() {
             @Override

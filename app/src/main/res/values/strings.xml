@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Shopping List</string>
+    <string name="app_name">List</string>
     <string name="list_name">Name</string>
     <string name="title_activity_lists">Lists</string>
     <string name="item_name">Name</string>
@@ -32,6 +32,16 @@
     <string name="widget_list">List to be displayed in the widget</string>
     <string name="configure_widget">Configure the widget</string>
     <string name="widget_no_data">No data to be displayed</string>
+
+
+    <string name="about">About...</string>
+    <string name="lists_title">My Lists</string>
+
+
+    <string name="about_title">About List</string>
+    <string name="about_text">List is a free of charge and ad-free Android app.\nDeveloped by:</string>
+    <string name="about_address">Triptraxxapps\nDipl.-Wirtschaftsinf.(FH)\nSabine Wegert\nGrubenstr. 40\n97816 Lohr (Germany)</string>
+    <string name="privacy_link"><a href="https://drive.google.com/open?id=1NHaG8rJahBeYEijj77QmXTnnh8ud0djy">Data Privacy</a></string>
 
 
 </resources>

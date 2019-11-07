@@ -1,14 +1,20 @@
 package com.shopping.bine.widget;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.Service;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
+
+import androidx.core.app.NotificationCompat;
 
 import com.shopping.bine.database.Storage;
 import com.shopping.bine.pojos.Item;
@@ -19,8 +25,6 @@ public class WidgetService extends Service {
     public final static String EXTRA_HS_LIST = "homescreen_list";
     private Storage storage;
 
-
-
     @Override
     public IBinder onBind(Intent arg0) {
         return null;
@@ -30,9 +34,19 @@ public class WidgetService extends Service {
     public void onCreate() {
         super.onCreate();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            int NOTIFICATION_ID = (int) (System.currentTimeMillis()%10000);
-            String channelId = WidgetService.class.getName();
-            startForeground(NOTIFICATION_ID, new Notification.Builder(this, channelId).build());
+            String NOTIFICATION_CHANNEL_ID = WidgetService.class.getName();
+            String channelName = "List Widget Background Service";
+            NotificationChannel chan = new NotificationChannel(NOTIFICATION_CHANNEL_ID, channelName, NotificationManager.IMPORTANCE_NONE);
+            NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            manager.createNotificationChannel(chan);
+
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
+            Notification notification = notificationBuilder.setOngoing(true)
+                    .setContentTitle("App is running in background")
+                    .setPriority(NotificationManager.IMPORTANCE_MIN)
+                    .setCategory(Notification.CATEGORY_SERVICE)
+                    .build();
+            startForeground(2, notification);
         }
     }
 

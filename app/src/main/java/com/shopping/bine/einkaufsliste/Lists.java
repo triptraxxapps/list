@@ -2,12 +2,20 @@ package com.shopping.bine.einkaufsliste;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.shopping.bine.R;
 import com.shopping.bine.database.Storage;
@@ -17,7 +25,7 @@ import java.util.List;
 
 
 
-public class Lists extends Activity {
+public class Lists extends AppCompatActivity {
 
     private static final String TAG = Lists.class.getSimpleName();
     private Storage storage;
@@ -30,6 +38,11 @@ public class Lists extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lists);
+
+
+        ActionBar bar = getSupportActionBar();
+        bar.setTitle(R.string.lists_title);
+        bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorAccent, null)));
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -68,4 +81,21 @@ public class Lists extends Activity {
         }
         adapter.notifyDataSetChanged();
      }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.info_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_about:
+                Intent about = new Intent(this, About.class);
+                startActivity(about);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

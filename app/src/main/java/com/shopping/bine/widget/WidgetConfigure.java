@@ -38,9 +38,9 @@ public class WidgetConfigure extends Activity implements AdapterView.OnItemClick
         setContentView(R.layout.widget_configure);
 
         List<String> colList = new ArrayList<String>();
+        colList.add(getResources().getString(R.string.widget_background_transparent));
         colList.add(getResources().getString(R.string.widget_background_light));
         colList.add(getResources().getString(R.string.widget_background_dark));
-        colList.add(getResources().getString(R.string.widget_background_transparent));
         colorSpinner = (Spinner) findViewById(R.id.spn_widget_color);
         ArrayAdapter<String> colAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, 0, colList);
         colorSpinner.setAdapter(colAdapter);
