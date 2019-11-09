@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
@@ -72,6 +73,7 @@ public class WidgetService extends Service {
             }
         }
         updateWidget();
+        stopSelf();
     }
 
     private void updateWidget(){
@@ -81,4 +83,5 @@ public class WidgetService extends Service {
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
         sendBroadcast(intent);
     }
+
 }
