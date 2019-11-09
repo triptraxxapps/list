@@ -1,4 +1,4 @@
-package com.shopping.bine.widget;
+package com.triptraxxapps.list.widget;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -8,16 +8,14 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
-import com.shopping.bine.database.Storage;
-import com.shopping.bine.pojos.Item;
+import com.triptraxxapps.list.database.Storage;
+import com.triptraxxapps.list.pojos.Item;
 
 public class WidgetService extends Service {
 

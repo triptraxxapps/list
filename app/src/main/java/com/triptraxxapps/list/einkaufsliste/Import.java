@@ -1,4 +1,4 @@
-package com.shopping.bine.einkaufsliste;
+package com.triptraxxapps.list.einkaufsliste;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.shopping.bine.io.ExportImportList;
+import com.triptraxxapps.list.io.ExportImportList;
 
 public class Import extends AppCompatActivity {
 

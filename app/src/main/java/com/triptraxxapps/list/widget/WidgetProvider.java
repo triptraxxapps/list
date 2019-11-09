@@ -1,4 +1,4 @@
-package com.shopping.bine.widget;
+package com.triptraxxapps.list.widget;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -11,10 +11,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RemoteViews;
 
-import com.shopping.bine.R;
-import com.shopping.bine.database.Storage;
-import com.shopping.bine.einkaufsliste.Lists;
-import com.shopping.bine.pojos.ShoppingList;
+import com.triptraxxapps.list.R;
+import com.triptraxxapps.list.database.Storage;
+import com.triptraxxapps.list.einkaufsliste.Lists;
+import com.triptraxxapps.list.pojos.ShoppingList;
 
 public class WidgetProvider extends AppWidgetProvider {
 

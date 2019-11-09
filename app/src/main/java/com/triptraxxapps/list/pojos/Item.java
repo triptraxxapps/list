@@ -1,4 +1,4 @@
-package com.shopping.bine.pojos;
+package com.triptraxxapps.list.pojos;
 
 import androidx.annotation.NonNull;
 

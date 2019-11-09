@@ -7,7 +7,7 @@
     android:background="@color/widgetLight"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context="com.shopping.bine.einkaufsliste.ListDetail">
+    tools:context="com.triptraxxapps.list.einkaufsliste.ListDetail">
 
     <LinearLayout
         android:layout_width="match_parent"

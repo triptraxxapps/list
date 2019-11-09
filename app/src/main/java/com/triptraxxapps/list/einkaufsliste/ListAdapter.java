@@ -1,4 +1,4 @@
-package com.shopping.bine.einkaufsliste;
+package com.triptraxxapps.list.einkaufsliste;
 
 import android.content.Context;
 
@@ -10,9 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.shopping.bine.R;
-import com.shopping.bine.database.Storage;
-import com.shopping.bine.pojos.ShoppingList;
+
+import com.triptraxxapps.list.R;
+import com.triptraxxapps.list.database.Storage;
+import com.triptraxxapps.list.pojos.ShoppingList;
 
 import java.util.List;
 

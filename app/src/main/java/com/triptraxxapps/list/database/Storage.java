@@ -1,13 +1,12 @@
-package com.shopping.bine.database;
+package com.triptraxxapps.list.database;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
-import com.shopping.bine.pojos.*;
+import com.triptraxxapps.list.pojos.*;
 
 import java.util.ArrayList;
 import java.util.List;

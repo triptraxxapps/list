@@ -6,7 +6,7 @@
     android:layout_height="fill_parent"
     android:background="@color/background"
     android:orientation="horizontal"
-    tools:context="com.shopping.bine.einkaufsliste.CreateList">
+    tools:context="com.triptraxxapps.list.einkaufsliste.CreateList">
 
     <EditText
         android:id="@+id/new_list_name"

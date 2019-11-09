@@ -1,20 +1,14 @@
-package com.shopping.bine.einkaufsliste;
+package com.triptraxxapps.list.einkaufsliste;
 
 import android.app.AlertDialog;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import androidx.core.content.FileProvider;
-import androidx.core.view.MenuItemCompat;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.ShareActionProvider;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
@@ -29,15 +23,21 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.shopping.bine.R;
-import com.shopping.bine.database.Storage;
-import com.shopping.bine.io.ExportImportList;
-import com.shopping.bine.pojos.Item;
-import com.shopping.bine.pojos.ShoppingList;
-import com.shopping.bine.widget.WidgetProvider;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.ShareActionProvider;
+import androidx.core.content.FileProvider;
+import androidx.core.view.MenuItemCompat;
+
 import com.skydoves.colorpickerpreference.ColorEnvelope;
 import com.skydoves.colorpickerpreference.ColorListener;
 import com.skydoves.colorpickerpreference.ColorPickerDialog;
+import com.triptraxxapps.list.R;
+import com.triptraxxapps.list.database.Storage;
+import com.triptraxxapps.list.io.ExportImportList;
+import com.triptraxxapps.list.pojos.Item;
+import com.triptraxxapps.list.pojos.ShoppingList;
+import com.triptraxxapps.list.widget.WidgetProvider;
 
 import java.io.File;
 import java.util.ArrayList;

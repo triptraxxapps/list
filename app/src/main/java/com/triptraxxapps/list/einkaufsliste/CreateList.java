@@ -1,4 +1,4 @@
-package com.shopping.bine.einkaufsliste;
+package com.triptraxxapps.list.einkaufsliste;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,8 +6,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.shopping.bine.R;
-import com.shopping.bine.database.Storage;
+import com.triptraxxapps.list.R;
+import com.triptraxxapps.list.database.Storage;
 
 public class CreateList extends AppCompatActivity {
     private static final String TAG = CreateList.class.getSimpleName();

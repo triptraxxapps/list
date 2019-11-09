@@ -1,20 +1,17 @@
-package com.shopping.bine.widget;
+package com.triptraxxapps.list.widget;
 
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
-import com.shopping.bine.R;
-import com.shopping.bine.database.Storage;
-import com.shopping.bine.einkaufsliste.ListDetail;
-import com.shopping.bine.pojos.Item;
+import com.triptraxxapps.list.R;
+import com.triptraxxapps.list.database.Storage;
+import com.triptraxxapps.list.einkaufsliste.ListDetail;
+import com.triptraxxapps.list.pojos.Item;
 
 import java.util.ArrayList;
 import java.util.Collections;

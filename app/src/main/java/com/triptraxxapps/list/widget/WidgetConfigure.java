@@ -1,4 +1,4 @@
-package com.shopping.bine.widget;
+package com.triptraxxapps.list.widget;
 
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
@@ -13,9 +13,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
-import com.shopping.bine.R;
-import com.shopping.bine.database.Storage;
-import com.shopping.bine.pojos.ShoppingList;
+import com.triptraxxapps.list.R;
+import com.triptraxxapps.list.database.Storage;
+import com.triptraxxapps.list.pojos.ShoppingList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ public class WidgetConfigure extends Activity implements AdapterView.OnItemClick
     private Spinner colorSpinner;
     private ListView widgetList;
     private Storage storage;
-    private static final String PREFS_NAME = "com.shopping.bine.widget.WidgetProvider";
+    private static final String PREFS_NAME = "com.triptraxxapps.list.widget.WidgetProvider";
     private static final String PREF_PREFIX_KEY_COLOR = "prefix_color_";
     private static final String PREF_PREFIX_KEY_LIST = "prefix_list_";
     private static final String TAG = WidgetConfigure.class.getSimpleName();

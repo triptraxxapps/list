@@ -1,4 +1,4 @@
-package com.shopping.bine.io;
+package com.triptraxxapps.list.io;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -7,15 +7,12 @@ import android.os.Handler;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.shopping.bine.database.Storage;
-import com.shopping.bine.pojos.Item;
-import com.shopping.bine.pojos.ShoppingList;
-
-import org.json.JSONException;
+import com.triptraxxapps.list.database.Storage;
+import com.triptraxxapps.list.pojos.Item;
+import com.triptraxxapps.list.pojos.ShoppingList;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;

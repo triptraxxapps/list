@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#F7F6EE"
     android:fitsSystemWindows="true"
-    tools:context="com.shopping.bine.einkaufsliste.Lists">
+    tools:context="com.triptraxxapps.list.einkaufsliste.Lists">
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
