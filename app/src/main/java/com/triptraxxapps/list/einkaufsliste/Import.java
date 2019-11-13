@@ -27,7 +27,6 @@ public class Import extends AppCompatActivity {
             exportImportList = new ExportImportList(this, null);
             exportImportList.importData(data);
         }
-        Log.d(TAG,"Main Activity starten");
         Intent launchActivity = new Intent (this, Lists.class);
         launchActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(launchActivity);

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg855"
+   inkscape:export-filename="/home/bine/developer/AndroidStudioProjects/Einkaufsliste/app/src/main/res/drawable/about.png"
+   inkscape:export-xdpi="82.653809"
+   inkscape:export-ydpi="82.653809"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="delete_item.svg">
+  <defs
+     id="defs849" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="7.9195959"
+     inkscape:cx="317.82359"
+     inkscape:cy="952.89395"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1806"
+     inkscape:window-height="1501"
+     inkscape:window-x="589"
+     inkscape:window-y="34"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata852">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot1400"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#c1c1c1;fill-opacity:1;stroke:none;"
+       transform="matrix(0.14107922,0,0,0.12863727,42.741681,20.74084)"
+       inkscape:export-filename="/home/bine/developer/AndroidStudioProjects/Einkaufsliste/app/src/main/res/drawable/delete_item.png"
+       inkscape:export-xdpi="55.430065"
+       inkscape:export-ydpi="55.430065"><flowRegion
+         id="flowRegion1402"
+         style="fill:#c1c1c1;fill-opacity:1;"><rect
+           id="rect1404"
+           width="175.71428"
+           height="103.57143"
+           x="345"
+           y="211.44826"
+           style="fill:#c1c1c1;fill-opacity:1;" /></flowRegion><flowPara
+         id="flowPara1406">x</flowPara></flowRoot>    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#c1c1c1;stroke-width:0.62264764;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path1408"
+       cx="93.009796"
+       cy="51.058357"
+       rx="3.5299976"
+       ry="3.5836718"
+       inkscape:export-filename="/home/bine/developer/AndroidStudioProjects/Einkaufsliste/app/src/main/res/drawable/delete_item.png"
+       inkscape:export-xdpi="55.430065"
+       inkscape:export-ydpi="55.430065" />
+  </g>
+</svg>

@@ -1,5 +1,9 @@
 package com.triptraxxapps.list.einkaufsliste;
 
+import android.app.AlertDialog;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -17,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.triptraxxapps.list.R;
 import com.triptraxxapps.list.database.Storage;
 import com.triptraxxapps.list.pojos.ShoppingList;
+import com.triptraxxapps.list.widget.WidgetProvider;
 
 import java.util.List;
 
@@ -35,7 +40,6 @@ public class Lists extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lists);
-
 
         ActionBar bar = getSupportActionBar();
         bar.setTitle(R.string.lists_title);
@@ -66,6 +70,41 @@ public class Lists extends AppCompatActivity {
                 startActivity(detailActivity);
             }
         });
+        listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                final ShoppingList item = (ShoppingList) parent.getItemAtPosition(position);
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Lists.this);
+                alertDialogBuilder.setTitle(getResources().getString(R.string.delete_list));
+                alertDialogBuilder
+                        .setMessage(getResources().getString(R.string.dialog_delete_list))
+                        .setCancelable(false)
+                        .setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                storage.deleteShoppingList(item.id);
+                                adapter.remove(item);
+                                adapter.notifyDataSetChanged();
+                                updateWidgets();
+                            }
+                        })
+                        .setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+                return true;
+            }
+        });
+    }
+
+    private void updateWidgets(){
+        Intent intent = new Intent(this, WidgetProvider.class);
+        intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+        int ids[] = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
+        sendBroadcast(intent);
     }
 
     @Override

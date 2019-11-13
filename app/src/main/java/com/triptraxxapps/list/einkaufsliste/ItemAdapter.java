@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.triptraxxapps.list.R;
@@ -14,9 +15,6 @@ import com.triptraxxapps.list.pojos.Item;
 
 import java.util.List;
 
-/**
- * Created by bine on 13.12.18.
- */
 
 public class ItemAdapter extends ArrayAdapter {
     private static final String TAG = ItemAdapter.class.getSimpleName();
@@ -38,8 +36,10 @@ public class ItemAdapter extends ArrayAdapter {
         TextView tvName = (TextView) rowView.findViewById(R.id.itemname_row);
         TextView tvAmount = (TextView) rowView.findViewById(R.id.itemamount_row);
         TextView tvUnit = (TextView) rowView.findViewById(R.id.itemunit_row);
+        ImageButton button = rowView.findViewById(R.id.delete_item);
 
         Item i = objects.get(position);
+        button.setTag(i);
         if(i.isChecked){
             tvName.setPaintFlags(tvName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         }
@@ -48,6 +48,10 @@ public class ItemAdapter extends ArrayAdapter {
             tvName.setTextColor(i.color);
         tvAmount.setText(getStringAmount(i.amount));
         tvUnit.setText(i.unit);
+
+
+
+
         return rowView;
     }
 
@@ -66,5 +70,4 @@ public class ItemAdapter extends ArrayAdapter {
         }
         return str.substring(0, point);
     }
-
 }

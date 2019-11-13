@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -53,15 +54,16 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
     private ItemAdapter adapter;
     private List<Item> items;
     private ListView listview;
-    private AutoCompleteTextView actv_itemname;
     private ExportImportList exportImportList;
     private Handler exportImportHandler;
     private Runnable exportImportRunnable;
     private ShareActionProvider mShareActionProvider;
-    private TextView tvItemName;
+    private AutoCompleteTextView tvItemName;
     private TextView tvItemAmount;
     private int textColor;
     private Spinner unitSpinner;
+    private ActionBar bar;
+    private ArrayAdapter<String> metaAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,15 +71,29 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
         setContentView(R.layout.list_detail);;
         storage = new Storage(this);
 
-        List<String> itemNames = storage.getItemMeta();
-        actv_itemname = (AutoCompleteTextView) findViewById(R.id.new_item_name);
-        actv_itemname.addTextChangedListener(this);
-        actv_itemname.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, itemNames));
+        List<String> metaNames = storage.getItemMeta();
+        tvItemName = (AutoCompleteTextView) findViewById(R.id.new_item_name);
+        tvItemName.addTextChangedListener(this);
+        metaAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, metaNames);
+        metaAdapter.setNotifyOnChange(true);
+        tvItemName.setAdapter(metaAdapter);
+        tvItemAmount = (TextView)findViewById(R.id.new_item_amount);
+        tvItemAmount.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    onClickSaveItem(v);
+                    return true;
+                }
+                return false;
+            }
+        });
+
 
         Long id = this.getIntent().getLongExtra("list_id", 0);
         shoppingList = storage.getShoppingListById(id);
 
-        ActionBar bar = getSupportActionBar();
+        bar = getSupportActionBar();
         bar.setHomeButtonEnabled(true);
         bar.setDisplayHomeAsUpEnabled(true);
         bar.setDisplayShowHomeEnabled(true);
@@ -115,8 +131,6 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
             }
         };
 
-        tvItemName = (TextView)findViewById(R.id.new_item_name);
-        tvItemAmount = (TextView)findViewById(R.id.new_item_amount);
         // Hide soft keybord on activity start
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
@@ -126,6 +140,10 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
         String itemName = tvItemName.getText().toString();
         String itemAmount = tvItemAmount.getText().toString();
         String unit = unitSpinner.getSelectedItem().toString();
+        saveItem(itemName, itemAmount, unit);
+    }
+
+    private void saveItem(String itemName, String itemAmount, String unit){
         if(itemName.trim().equals("")){
             Toast.makeText(this, R.string.itemname_empty, Toast.LENGTH_SHORT).show();
             return;
@@ -136,6 +154,12 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
                 return;
             }
         }
+
+        if(!storage.checkItemMeta(itemName)) {
+            metaAdapter.add(itemName);
+            metaAdapter.notifyDataSetChanged();
+        }
+
         if(textColor == 0)
             textColor = COLOR_GRAY;
         long id = storage.saveItem(itemName, Float.parseFloat(itemAmount), unit, textColor,false, shoppingList.id);
@@ -144,6 +168,7 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
         adapter.notifyDataSetChanged();
         tvItemName.setText("");
         tvItemAmount.setText("1");
+        unitSpinner.setSelection(0);
         updateWidgets();
     }
 
@@ -294,6 +319,13 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent launchActivity = new Intent (this, Lists.class);
+        startActivity(launchActivity);
+        finish();
+    }
+
     private void sortItemColor() {
         Collections.sort(items);
         adapter.notifyDataSetChanged();
@@ -312,11 +344,25 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
     @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {}
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        if (s.length() < 1 || start >= s.length() || start < 0)
+            return;
+        if (s.subSequence(start, start + 1).toString().equalsIgnoreCase("\n")) {
+            String itemName = start > 0 ? s.subSequence(0, start).toString() : "";
+            itemName += start < s.length() ? s.subSequence(start + 1, s.length()).toString() : "";
+            tvItemName.setText(itemName);
+            tvItemName.setSelection(itemName.length());
+            String itemAmount = tvItemAmount.getText().toString();
+            String unit = unitSpinner.getSelectedItem().toString();
+            saveItem(itemName, itemAmount, unit);
+        }
+    }
 
     public void onClickChooseColor(View v) {
-        ColorPickerDialog.Builder builder = new ColorPickerDialog.Builder(this, android.R.style.Theme_DeviceDefault_Dialog);
-
+        if(textColor == 0)
+            textColor = COLOR_GRAY;
+        final int oldColor = textColor;
+        final ColorPickerDialog.Builder builder = new ColorPickerDialog.Builder(this, android.R.style.Theme_DeviceDefault_Dialog);
         builder.getColorPickerView().setPaletteDrawable(getDrawable(R.drawable.palettebar));
         builder.setTitle(R.string.item_color_dialog);
         builder.setPositiveButton(getString(R.string.ok), new ColorListener() {
@@ -329,6 +375,8 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
         builder.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                tvItemName.setTextColor(oldColor);
+                textColor = oldColor;
                 dialogInterface.dismiss();
             }
         });
@@ -337,6 +385,13 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
 
     @Override
     protected void onResume() {
+        items.clear();
+        List<Item> tmpList = storage.getItemsByList(shoppingList.id);
+        for(Item i : tmpList) {
+            items.add(i);
+        }
+        sortList(items);
+        adapter.notifyDataSetChanged();
         super.onResume();
     }
 
@@ -346,5 +401,11 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
         int ids[] = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
         sendBroadcast(intent);
+    }
+
+    public void onClickRemoveItem(View v) {
+        Item i = (Item)v.getTag();
+        storage.deleteItem(i.id);
+        adapter.remove(i);
     }
 }

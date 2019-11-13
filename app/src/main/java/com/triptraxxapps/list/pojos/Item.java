@@ -2,10 +2,6 @@ package com.triptraxxapps.list.pojos;
 
 import androidx.annotation.NonNull;
 
-/**
- * Created by bine on 06.12.18.
- */
-
 public class Item implements Comparable<Item>{
 
     public long id;

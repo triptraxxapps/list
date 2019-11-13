@@ -11,10 +11,6 @@ import com.triptraxxapps.list.pojos.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by bine on 28.11.18.
- */
-
 public class Storage extends SQLiteOpenHelper {
     private static final String TAG = Storage.class.getSimpleName();
     private static final String DATENBANK_NAME =  "einkaufsliste.db";
@@ -253,6 +249,5 @@ public class Storage extends SQLiteOpenHelper {
         cursor.close();
         dbCon.close();
         return count;
-
     }
 }

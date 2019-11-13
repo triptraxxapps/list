@@ -2,10 +2,6 @@ package com.triptraxxapps.list.pojos;
 
 import java.util.List;
 
-/**
- * Created by bine on 30.11.18.
- */
-
 public class ShoppingList {
 
     public long id;

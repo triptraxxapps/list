@@ -13,6 +13,7 @@ import android.widget.RemoteViews;
 
 import com.triptraxxapps.list.R;
 import com.triptraxxapps.list.database.Storage;
+import com.triptraxxapps.list.einkaufsliste.ListDetail;
 import com.triptraxxapps.list.einkaufsliste.Lists;
 import com.triptraxxapps.list.pojos.ShoppingList;
 
@@ -46,6 +47,8 @@ public class WidgetProvider extends AppWidgetProvider {
         String color = WidgetConfigure.loadColorPref(context, appWidgetId);
         long listId = WidgetConfigure.loadListPref(context, appWidgetId);
         ShoppingList sl = storage.getShoppingListById(listId);
+        PendingIntent pendingIntent = null;
+        Intent intent = null;
         if(sl != null){
             views.setTextViewText(R.id.widget_list_name, sl.name);
             if(storage.getItemsByList(listId).size() == 0){
@@ -58,8 +61,18 @@ public class WidgetProvider extends AppWidgetProvider {
                 listIntent.setData(Uri.parse(listIntent.toUri(Intent.URI_INTENT_SCHEME)));
                 views.setRemoteAdapter(R.id.hs_list, listIntent);
             }
-        }else
+            intent = new Intent(context, ListDetail.class);
+            intent.putExtra("list_id", sl.id);
+            pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+            views.setOnClickPendingIntent(R.id.widget_root, pendingIntent);
+
+        }else {
             views.setInt(R.id.widget_msg, "setVisibility", View.VISIBLE);
+            //go to app when button is pressed
+            intent = new Intent(context, Lists.class);
+            pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+            views.setOnClickPendingIntent(R.id.widget_root, pendingIntent);
+        }
         if(context.getResources().getString(R.string.widget_background_light).equals(color)) {
             views.setInt(R.id.widget_root, "setBackgroundResource", R.color.widgetLight);
         }else if(context.getResources().getString(R.string.widget_background_dark).equals(color)) {
@@ -67,9 +80,10 @@ public class WidgetProvider extends AppWidgetProvider {
         }
 
         //go to app when button is pressed
-        Intent intent = new Intent(context, Lists.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
-        views.setOnClickPendingIntent(R.id.widget_root, pendingIntent);
+//        Intent intent = new Intent(context, Lists.class);
+//        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+//        views.setOnClickPendingIntent(R.id.widget_root, pendingIntent);
+//
         //strike item when item is klicked
         Intent serviceIntent = new Intent(context, WidgetService.class);
         PendingIntent pi = null;

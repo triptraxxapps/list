@@ -27,6 +27,8 @@ public class About extends AppCompatActivity {
 
         TextView privacy = findViewById(R.id.privacy);
         privacy.setMovementMethod(LinkMovementMethod.getInstance());
+        TextView colorPicker = findViewById(R.id.color_picker);
+        colorPicker.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {

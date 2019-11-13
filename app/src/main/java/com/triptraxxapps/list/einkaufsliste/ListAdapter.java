@@ -17,10 +17,6 @@ import com.triptraxxapps.list.pojos.ShoppingList;
 
 import java.util.List;
 
-/**
- * Created by bine on 13.12.18.
- */
-
 public class ListAdapter extends ArrayAdapter {
     private static final String TAG = ListAdapter.class.getSimpleName();
     private final Context context;
