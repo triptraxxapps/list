@@ -63,14 +63,16 @@ public class WidgetProvider extends AppWidgetProvider {
             }
             intent = new Intent(context, ListDetail.class);
             intent.putExtra("list_id", sl.id);
-            pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            int uniqueInt = (int) (System.currentTimeMillis() & 0xfffffff);
+            pendingIntent = PendingIntent.getActivity(context, uniqueInt, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             views.setOnClickPendingIntent(R.id.widget_root, pendingIntent);
 
         }else {
             views.setInt(R.id.widget_msg, "setVisibility", View.VISIBLE);
             //go to app when button is pressed
             intent = new Intent(context, Lists.class);
-            pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+            pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             views.setOnClickPendingIntent(R.id.widget_root, pendingIntent);
         }
         if(context.getResources().getString(R.string.widget_background_light).equals(color)) {
@@ -78,12 +80,6 @@ public class WidgetProvider extends AppWidgetProvider {
         }else if(context.getResources().getString(R.string.widget_background_dark).equals(color)) {
             views.setInt(R.id.widget_root, "setBackgroundResource", R.color.widgetDark);
         }
-
-        //go to app when button is pressed
-//        Intent intent = new Intent(context, Lists.class);
-//        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
-//        views.setOnClickPendingIntent(R.id.widget_root, pendingIntent);
-//
         //strike item when item is klicked
         Intent serviceIntent = new Intent(context, WidgetService.class);
         PendingIntent pi = null;

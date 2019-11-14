@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -141,6 +142,7 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
         String itemAmount = tvItemAmount.getText().toString();
         String unit = unitSpinner.getSelectedItem().toString();
         saveItem(itemName, itemAmount, unit);
+        tvItemName.requestFocus();
     }
 
     private void saveItem(String itemName, String itemAmount, String unit){
@@ -381,6 +383,16 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
             }
         });
         builder.show();
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Long id = intent.getLongExtra("list_id", 0);
+        if(id != 0) {
+            shoppingList = storage.getShoppingListById(id);
+            bar.setTitle(shoppingList.name);
+        }
     }
 
     @Override
