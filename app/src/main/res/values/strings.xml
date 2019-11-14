@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">List</string>
+    <string name="list_name">Name</string>
+    <string name="title_activity_lists">Lists</string>
+    <string name="item_name">Name</string>
+    <string name="delete_list">delete list</string>
+    <string name="clear_list">clear list</string>
+    <string name="clear_checked">delete completed</string>
+    <string name="check_all">complete all</string>
+    <string name="uncheck_all">complete none</string>
+    <string name="sort_color">sort colors</string>
+    <string name="itemname_empty">field name must not be empty</string>
+    <string name="itemname_exists">This item is already on the list</string>
+    <string name="share_list">Share list</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="item_color_dialog">Choose Item Color</string>
+    <string name="dialog_delete_list">Do you really want to delete this list?</string>
+    <string name="dialog_clear_list">Do you really want to clear this list?</string>
+    <string-array name="unit_array">
+        <item></item>
+        <item>pc</item>
+        <item>g</item>
+        <item>kg</item>
+        <item>ml</item>
+        <item>l</item>
+    </string-array>
+    <string name="widget_background">Background Color of the widget</string>
+    <string name="widget_background_light">light</string>
+    <string name="widget_background_dark">dark</string>
+    <string name="widget_background_transparent">transparent</string>
+    <string name="widget_list">List to be displayed in the widget</string>
+    <string name="configure_widget">Configure the widget</string>
+    <string name="widget_no_data">No data to be displayed</string>
+
+
+    <string name="about">About...</string>
+    <string name="lists_title">My Lists</string>
+
+
+    <string name="about_title">About List</string>
+    <string name="about_text">List is a free of charge and ad-free Android app.\nDeveloped by:</string>
+    <string name="about_address">Triptraxxapps\nDipl.-Wirtschaftsinf.(FH)\nSabine Wegert\nGrubenstr. 40\n97816 Lohr (Germany)\n\nContact: triptraxxapps@gmail.com</string>
+    <string name="privacy_link"><a href="https://drive.google.com/open?id=1NHaG8rJahBeYEijj77QmXTnnh8ud0djy">Data Privacy</a></string>
+    <string name="color_picker">Many thanks also to <a href="https://github.com/skydoves/ColorPickerPreference">skydoves ColorPickerPreference</a>, which was used for coloring the list elements.</string>
+
+
+</resources>

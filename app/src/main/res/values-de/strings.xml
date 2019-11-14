@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">Liste</string>
+    <string name="list_name">Name</string>
+    <string name="title_activity_lists">Listen</string>
+    <string name="item_name">Name</string>
+    <string name="delete_list">Liste löschen</string>
+    <string name="clear_list">Liste leeren</string>
+    <string name="clear_checked">Erledigte löschen</string>
+    <string name="check_all">Alle erledigen</string>
+    <string name="uncheck_all">Keine erledigen</string>
+    <string name="sort_color">Nach Farbe sortieren</string>
+    <string name="itemname_empty">Der Name darf nicht leer sein</string>
+    <string name="itemname_exists">Der Gegenstand befindet sich schon auf der Liste</string>
+    <string name="share_list">Liste teilen</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="item_color_dialog">Farbe wählen</string>
+    <string name="dialog_delete_list">Soll diese Liste wirklich gelöscht werden?</string>
+    <string name="dialog_clear_list">Soll die Liste wirklich geleert werden?</string>
+    <string-array name="unit_array">
+        <item></item>
+        <item>st</item>
+        <item>g</item>
+        <item>kg</item>
+        <item>ml</item>
+        <item>l</item>
+    </string-array>
+    <string name="widget_background">Hintergrundfarbe des Widgets</string>
+    <string name="widget_background_light">Hell</string>
+    <string name="widget_background_dark">Dunkel</string>
+    <string name="widget_background_transparent">Transparent</string>
+    <string name="widget_list">Liste des Widgets</string>
+    <string name="configure_widget">Widget einrichten</string>
+    <string name="widget_no_data">Es können keine Daten angezeigt werden</string>
+
+
+    <string name="about">Über...</string>
+    <string name="lists_title">Meine Listen</string>
+
+
+    <string name="about_title">Über Liste</string>
+    <string name="about_text">Liste ist eine kosten- und werbefrei zur Verfügung gestellte Android App.\nEntwickelt von:</string>
+    <string name="about_address">Triptraxxapps\nDipl.-Wirtschaftsinf.(FH)\nSabine Wegert\nGrubenstr. 40\n97816 Lohr (Deutschland)\n\nKontakt: triptraxxapps@gmail.com</string>
+    <string name="privacy_link"><a href="https://drive.google.com/open?id=1WOPCe6p9lNPJKMlwawpD59ldDIBF5LVr">Datenschutz</a></string>
+    <string name="color_picker">Für die Farbwahl der Listenelemente wurde <a href="https://github.com/skydoves/ColorPickerPreference">skydoves ColorPickerPreference</a> verwendet. Vielen Dank!</string>
+
+
+</resources>
