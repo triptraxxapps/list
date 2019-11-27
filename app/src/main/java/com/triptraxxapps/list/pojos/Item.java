@@ -10,6 +10,7 @@ public class Item implements Comparable<Item>{
     public String unit;
     public boolean isChecked;
     public int color;
+    public int position;
     public ShoppingList shoppingList;
     public static final String ITEM_TABLE = "item";
     public static final String ITEM_NAME = "name";
@@ -17,6 +18,7 @@ public class Item implements Comparable<Item>{
     public static final String ITEM_AMOUNT = "amount";
     public static final String ITEM_UNIT = "unit";
     public static final String ITEM_COLOR = "color";
+    public static final String ITEM_POSITION = "position";
     public static final String ITEM_CHECKED = "checked";
     public static final String ITEM_LIST = "list";
     public static final String ITEM_META_TABLE = "item_meta";

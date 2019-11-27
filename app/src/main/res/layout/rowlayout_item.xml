@@ -40,6 +40,17 @@
         android:textSize="18sp" />
 
     <ImageButton
+        android:id="@+id/move_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1"
+        android:background="@color/background"
+        android:minHeight="?android:attr/listPreferredItemHeightSmall"
+        android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+        android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
+        app:srcCompat="@drawable/move" />
+
+    <ImageButton
         android:id="@+id/delete_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -48,4 +59,5 @@
         android:background="@color/background"
         android:onClick="onClickRemoveItem"
         android:src="@drawable/delete_item" />
+
 </LinearLayout>

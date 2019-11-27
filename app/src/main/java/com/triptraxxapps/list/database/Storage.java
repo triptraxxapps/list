@@ -14,12 +14,13 @@ import java.util.List;
 public class Storage extends SQLiteOpenHelper {
     private static final String TAG = Storage.class.getSimpleName();
     private static final String DATENBANK_NAME =  "einkaufsliste.db";
-    private static final int DATENBANK_VERSION = 3;
+    private static final int DATENBANK_VERSION = 4;
     Context context;
 
     public static final String[] ALL_LIST_COLUMNS = new String[] {
             ShoppingList.LIST_ID,
             ShoppingList.LIST_NAME,
+            ShoppingList.LIST_POSITION,
     };
 
     public static final String[] ALL_ITEM_META_COLUMNS = new String[] {
@@ -34,7 +35,8 @@ public class Storage extends SQLiteOpenHelper {
             Item.ITEM_COLOR,
             Item.ITEM_CHECKED,
             Item.ITEM_LIST,
-            Item.ITEM_UNIT
+            Item.ITEM_UNIT,
+            Item.ITEM_POSITION
     };
 
     public Storage(Context context) {
@@ -46,7 +48,8 @@ public class Storage extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE '" + ShoppingList.LIST_TABLE + "' ('"
                 + ShoppingList.LIST_ID + "' integer primary key autoincrement,'"
-                + ShoppingList.LIST_NAME + "' text NOT NULL);");
+                + ShoppingList.LIST_NAME + "' text NOT NULL,'"
+                + ShoppingList.LIST_POSITION + "' integer);");
 
         db.execSQL("CREATE TABLE '" + Item.ITEM_TABLE + "' ('"
                 + Item.ITEM_ID + "' integer primary key autoincrement,'"
@@ -55,7 +58,8 @@ public class Storage extends SQLiteOpenHelper {
                 + Item.ITEM_COLOR + "' integer,'"
                 + Item.ITEM_CHECKED + "' bool NOT NULL,'"
                 + Item.ITEM_UNIT  + "' text,'"
-                + Item.ITEM_LIST + "' integer NOT NULL REFERENCES '" + ShoppingList.LIST_TABLE + "' ('" + ShoppingList.LIST_ID + "'));");
+                + Item.ITEM_LIST + "' integer NOT NULL REFERENCES '" + ShoppingList.LIST_TABLE + "' ('" + ShoppingList.LIST_ID + "'),'"
+                + Item.ITEM_POSITION + "' integer);");
 
         db.execSQL("CREATE TABLE '" + Item.ITEM_META_TABLE + "' ('"
                 + Item.ITEM_META_ID + "' integer primary key autoincrement,'"
@@ -68,6 +72,12 @@ public class Storage extends SQLiteOpenHelper {
             db.execSQL("ALTER  TABLE '" + Item.ITEM_TABLE + "' ADD COLUMN '"
                     + Item.ITEM_UNIT + "' text;");
         }
+        if(oldVersion == 3 && newVersion == 4) {
+            db.execSQL("ALTER  TABLE '" + Item.ITEM_TABLE + "' ADD COLUMN '"
+                    + Item.ITEM_POSITION + "' integer;");
+            db.execSQL("ALTER  TABLE '" + ShoppingList.LIST_TABLE + "' ADD COLUMN '"
+                    + ShoppingList.LIST_POSITION + "' integer;");
+        }
     }
 
     public long saveList(String name){
@@ -79,11 +89,23 @@ public class Storage extends SQLiteOpenHelper {
         return id;
     }
 
+    public void saveListOrder(List<ShoppingList>lists){
+        final SQLiteDatabase dbCon = getWritableDatabase();
+        final ContentValues daten = new ContentValues();
+
+        for(ShoppingList sl : lists){
+            daten.put(ShoppingList.LIST_POSITION, lists.indexOf(sl));
+            dbCon.update(ShoppingList.LIST_TABLE, daten, ShoppingList.LIST_ID + "=?", new String[]{Long.toString(sl.id)});
+            daten.clear();
+        }
+        dbCon.close();
+    }
+
     public List<ShoppingList> getAllShoppingLists(){
         List<ShoppingList> slists = new ArrayList<ShoppingList>();
 
         SQLiteDatabase dbCon = getReadableDatabase();
-        Cursor cursor = dbCon.query(ShoppingList.LIST_TABLE, ALL_LIST_COLUMNS, null, null, null,null,null);
+        Cursor cursor = dbCon.query(ShoppingList.LIST_TABLE, ALL_LIST_COLUMNS, null, null, null,null,ShoppingList.LIST_POSITION+" ASC");
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
@@ -113,7 +135,7 @@ public class Storage extends SQLiteOpenHelper {
         ShoppingList slist = new ShoppingList();
         slist.id = cursor.getLong(0);
         slist.name = cursor.getString(1);
-
+        slist.position = cursor.getInt(2);
         return slist;
     }
 
@@ -128,6 +150,7 @@ public class Storage extends SQLiteOpenHelper {
         else
             item.isChecked = false;
         item.unit = cursor.getString(6);
+        item.position = cursor.getInt(7);
         return item;
     }
 
@@ -177,7 +200,7 @@ public class Storage extends SQLiteOpenHelper {
 
         SQLiteDatabase dbCon = getReadableDatabase();
         Cursor cursor = dbCon.query(Item.ITEM_TABLE, ALL_ITEM_COLUMNS,
-                Item.ITEM_LIST + " = ?", new String[]{Long.toString(listId)}, null, null, Item.ITEM_ID+" DESC");
+                Item.ITEM_LIST + " = ?", new String[]{Long.toString(listId)}, null, null, Item.ITEM_POSITION+" ASC");
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
@@ -249,5 +272,17 @@ public class Storage extends SQLiteOpenHelper {
         cursor.close();
         dbCon.close();
         return count;
+    }
+
+    public void saveItemOrder(List<Item> items) {
+        final SQLiteDatabase dbCon = getWritableDatabase();
+        final ContentValues daten = new ContentValues();
+
+        for(Item i : items){
+            daten.put(Item.ITEM_POSITION, items.indexOf(i));
+            dbCon.update(Item.ITEM_TABLE, daten, Item.ITEM_ID + "=?", new String[]{Long.toString(i.id)});
+            daten.clear();
+        }
+        dbCon.close();
     }
 }
