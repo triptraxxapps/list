@@ -29,38 +29,44 @@
         <activity
             android:name=".einkaufsliste.Import"
             android:launchMode="singleInstance">
+
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
-
+                <category android:name="android.intent.category.BROWSABLE"/>
                 <action android:name="android.intent.action.VIEW" />
+                <data
+                    android:host="*"
+                    android:mimeType="text/plain"
+                    android:scheme="content"/>
 
-                <data android:mimeType="application/json" />
-                <data android:scheme="content" />
             </intent-filter>
+
+
+
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE"/>
 
                 <action android:name="android.intent.action.VIEW" />
 
-                <data android:mimeType="text/*" />
-                <data android:scheme="content" />
+                <data
+                    android:host="*"
+                    android:mimeType="application/json"
+                    android:scheme="content"/>
             </intent-filter>
+
             <intent-filter>
-                <category android:name="android.intent.category.ALTERNATIVE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE"/>
 
                 <action android:name="android.intent.action.VIEW" />
 
-                <data android:mimeType="text/*" />
-                <data android:scheme="content" />
+                <data
+                    android:host="*"
+                    android:mimeType="application/octet-stream"
+                    android:scheme="content"/>
             </intent-filter>
-            <intent-filter>
-                <category android:name="android.intent.category.ALTERNATIVE" />
 
-                <action android:name="android.intent.action.VIEW" />
-
-                <data android:mimeType="application/json" />
-                <data android:scheme="content" />
-            </intent-filter>
         </activity>
 
         <provider
