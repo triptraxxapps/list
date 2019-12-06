@@ -52,6 +52,8 @@ public class ItemAdapter extends ArrayAdapter {
         moveBtn.setTag(i);
         if(i.isChecked){
             tvName.setPaintFlags(tvName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        }else{
+            tvName.setPaintFlags(0);
         }
         tvName.setText(i.name);
         if(i.color != 0)
