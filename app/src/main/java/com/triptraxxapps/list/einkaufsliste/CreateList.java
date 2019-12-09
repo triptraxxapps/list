@@ -1,12 +1,11 @@
 package com.triptraxxapps.list.einkaufsliste;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.triptraxxapps.list.R;
 import com.triptraxxapps.list.database.Storage;

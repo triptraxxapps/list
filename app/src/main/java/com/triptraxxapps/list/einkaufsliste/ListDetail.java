@@ -25,6 +25,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.ShareActionProvider;
@@ -65,6 +66,7 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
     private Spinner unitSpinner;
     private ActionBar bar;
     private ArrayAdapter<String> metaAdapter;
+    final static int RENAME_LIST_RQ = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -232,6 +234,11 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
+            case  R.id.action_rename_list:
+                Intent renameList = new Intent (this, RenameList.class);
+                renameList.putExtra("list_id", shoppingList.id);
+                startActivityForResult(renameList, RENAME_LIST_RQ);
+                break;
             case R.id.action_delete_list:
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ListDetail.this);
                 alertDialogBuilder.setTitle(getResources().getString(R.string.delete_list));
@@ -419,5 +426,14 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
         Item i = (Item)v.getTag();
         storage.deleteItem(i.id);
         adapter.remove(i);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == RENAME_LIST_RQ){
+            shoppingList = storage.getShoppingListById(shoppingList.id);
+            bar.setTitle(shoppingList.name);
+        }
     }
 }

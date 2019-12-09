@@ -3,6 +3,7 @@
     <string name="list_name">Name</string>
     <string name="title_activity_lists">Lists</string>
     <string name="item_name">Name</string>
+    <string name="rename_list">rename list</string>
     <string name="delete_list">delete list</string>
     <string name="clear_list">clear list</string>
     <string name="clear_checked">delete completed</string>

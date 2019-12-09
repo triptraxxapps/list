@@ -3,6 +3,7 @@
     <string name="list_name">Name</string>
     <string name="title_activity_lists">Listen</string>
     <string name="item_name">Name</string>
+    <string name="rename_list">Liste umbenennen</string>
     <string name="delete_list">Liste löschen</string>
     <string name="clear_list">Liste leeren</string>
     <string name="clear_checked">Erledigte löschen</string>

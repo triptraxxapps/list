@@ -285,4 +285,12 @@ public class Storage extends SQLiteOpenHelper {
         }
         dbCon.close();
     }
+
+    public void updateList(ShoppingList shoppingList) {
+        final ContentValues daten = new ContentValues();
+        daten.put(ShoppingList.LIST_NAME, shoppingList.name);
+        final SQLiteDatabase dbCon = getWritableDatabase();
+        dbCon.update(ShoppingList.LIST_TABLE, daten, ShoppingList.LIST_ID + "=?", new String[]{Long.toString(shoppingList.id)});
+        dbCon.close();
+    }
 }
