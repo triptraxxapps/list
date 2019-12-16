@@ -30,13 +30,14 @@
 
     <ImageButton
         android:id="@+id/move_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
         android:layout_weight="0.1"
-        android:background="@color/background"
+        android:background="@drawable/move"
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:paddingStart="?android:attr/listPreferredItemPaddingStart"
-        android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
-        app:srcCompat="@drawable/move" />
+        android:paddingEnd="?android:attr/listPreferredItemPaddingEnd" />
 
 </LinearLayout>

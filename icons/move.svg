@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8"
-     inkscape:cx="305.86055"
+     inkscape:cx="198.00341"
      inkscape:cy="910.26804"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -49,7 +49,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -60,29 +60,42 @@
     <ellipse
        style="fill:#c1c1c1;fill-opacity:1;stroke:#c1c1c1;stroke-width:0.60000002;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path1368"
-       cx="62.838539"
-       cy="12.100444"
+       cx="27.042721"
+       cy="13.612349"
        rx="1.7008928"
        ry="1.6063988"
-       inkscape:export-xdpi="22.144905"
-       inkscape:export-ydpi="22.144905" />
+       inkscape:export-xdpi="18.461521"
+       inkscape:export-ydpi="18.461521"
+       inkscape:export-filename="/home/bine/developer/AndroidStudioProjects/Einkaufsliste/app/src/main/res/drawable/move.png" />
     <ellipse
        style="fill:#c1c1c1;fill-opacity:1;stroke:#c1c1c1;stroke-width:0.60000002;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path1368-3"
-       cx="62.838539"
-       cy="19.848959"
+       cx="27.042721"
+       cy="21.360863"
        rx="1.7008928"
        ry="1.6063988"
-       inkscape:export-xdpi="22.144905"
-       inkscape:export-ydpi="22.144905" />
+       inkscape:export-xdpi="18.461521"
+       inkscape:export-ydpi="18.461521"
+       inkscape:export-filename="/home/bine/developer/AndroidStudioProjects/Einkaufsliste/app/src/main/res/drawable/move.png" />
     <ellipse
        style="fill:#c1c1c1;fill-opacity:1;stroke:#c1c1c1;stroke-width:0.60000002;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path1368-6"
-       cx="62.933033"
-       cy="27.786463"
+       cx="27.042721"
+       cy="29.298367"
        rx="1.7008928"
        ry="1.6063988"
-       inkscape:export-xdpi="22.144905"
-       inkscape:export-ydpi="22.144905" />
+       inkscape:export-xdpi="18.461521"
+       inkscape:export-ydpi="18.461521"
+       inkscape:export-filename="/home/bine/developer/AndroidStudioProjects/Einkaufsliste/app/src/main/res/drawable/move.png" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:none;stroke-width:0.36055523;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect819"
+       width="34.395832"
+       height="34.395851"
+       x="10.222779"
+       y="4.6354165"
+       inkscape:export-filename="/home/bine/developer/AndroidStudioProjects/Einkaufsliste/app/src/main/res/drawable/move.png"
+       inkscape:export-xdpi="18.461521"
+       inkscape:export-ydpi="18.461521" />
   </g>
 </svg>

@@ -13,14 +13,11 @@
    height="297mm"
    viewBox="0 0 210 297"
    version="1.1"
-   id="svg8"
-   inkscape:export-filename="/home/bine/developer/AndroidStudioProjects/Einkaufsliste/app/src/main/res/drawable/rename.png"
-   inkscape:export-xdpi="3.4348042"
-   inkscape:export-ydpi="3.4348042"
+   id="svg825"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
    sodipodi:docname="rename.svg">
   <defs
-     id="defs2" />
+     id="defs819" />
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -28,19 +25,19 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
-     inkscape:cx="-894.25755"
-     inkscape:cy="816.04071"
+     inkscape:zoom="0.7"
+     inkscape:cx="1290.2094"
+     inkscape:cy="508.87744"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="2282"
-     inkscape:window-height="1386"
-     inkscape:window-x="593"
-     inkscape:window-y="213"
-     inkscape:window-maximized="0" />
+     inkscape:window-width="2880"
+     inkscape:window-height="1732"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
   <metadata
-     id="metadata5">
+     id="metadata822">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
@@ -54,43 +51,46 @@
   <g
      inkscape:label="Ebene 1"
      inkscape:groupmode="layer"
-     id="layer1"
-     sodipodi:insensitive="true">
-    <rect
-       style="fill:none;fill-opacity:1;stroke:none;stroke-width:1.52509093;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect840"
-       width="404.66537"
-       height="403.15347"
-       x="-571.99341"
-       y="-122.29103"
-       inkscape:export-xdpi="3"
-       inkscape:export-ydpi="3" />
+     id="layer1">
     <ellipse
-       style="fill:none;fill-opacity:1;stroke:#4d4d4d;stroke-width:16.65434074;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="path828"
-       cx="-366.93353"
-       cy="77.395836"
-       rx="92.2873"
-       ry="91.520477"
-       inkscape:export-xdpi="3"
-       inkscape:export-ydpi="3" />
+       style="fill:none;fill-opacity:1;stroke:#4d4d4d;stroke-width:8.31287861;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path1373"
+       cx="122.86844"
+       cy="111.00491"
+       rx="29.609711"
+       ry="29.52474"
+       inkscape:export-filename="/home/bine/developer/AndroidStudioProjects/Einkaufsliste/app/src/main/res/drawable/rename.png"
+       inkscape:export-xdpi="7.926477"
+       inkscape:export-ydpi="7.926477" />
     <rect
-       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:18.0566597;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect830"
-       width="103.50454"
-       height="61.676834"
-       x="-328.69293"
-       y="54.515705"
-       ry="6.5504422"
-       inkscape:export-xdpi="3"
-       inkscape:export-ydpi="3" />
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.59567916;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1382"
+       width="14.951446"
+       height="23.435499"
+       x="-66.906433"
+       y="153.25491"
+       transform="matrix(0.08559935,-0.99632964,0.94359905,0.33109038,0,0)"
+       inkscape:export-filename="/home/bine/developer/AndroidStudioProjects/Einkaufsliste/app/src/main/res/drawable/rename.png"
+       inkscape:export-xdpi="7.926477"
+       inkscape:export-ydpi="7.926477" />
     <path
-       style="fill:#4d4d4d;fill-opacity:1;stroke:none;stroke-width:10.34431934;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m -287.72253,37.035605 28.94806,-12.867501 c 0,0 -0.0333,0.08223 -0.16661,1.384145 l -5.38857,52.622366 c -0.13332,1.301924 -1.28786,1.859889 -2.41916,1.18472 l -49.00671,-29.247383 c -1.13131,-0.675176 -0.85739,0.04527 0.10379,-0.391255 l 27.9292,-12.685092 c 0.96117,-0.436603 18.68618,55.811186 0,0 z"
-       id="rect836"
+       style="fill:#4d4d4d;fill-opacity:1;stroke:none;stroke-width:3.40577531;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 145.72787,93.816198 13.06974,-9.461733 -1.38914,24.272425 -23.58934,-6.54204 z"
+       id="rect1377"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="csssssssc"
-       inkscape:export-xdpi="3"
-       inkscape:export-ydpi="3" />
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="/home/bine/developer/AndroidStudioProjects/Einkaufsliste/app/src/main/res/drawable/rename.png"
+       inkscape:export-xdpi="7.926477"
+       inkscape:export-ydpi="7.926477" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:none;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1394"
+       width="153.81361"
+       height="152.47726"
+       x="46.829826"
+       y="37.798344"
+       inkscape:export-xdpi="7.926477"
+       inkscape:export-ydpi="7.926477"
+       inkscape:export-filename="/home/bine/developer/AndroidStudioProjects/Einkaufsliste/app/src/main/res/drawable/rename.png" />
   </g>
 </svg>

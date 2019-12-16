@@ -10,28 +10,29 @@
         android:id="@+id/itemamount_row"
         android:layout_width="0px"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="15dp"
         android:layout_weight="0.7"
         android:ellipsize="end"
         android:gravity="bottom|start"
-        android:singleLine="true"
-        android:textSize="14sp" />
+        android:singleLine="true" />
 
     <TextView
         android:id="@+id/itemunit_row"
         android:layout_width="0px"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="15dp"
         android:layout_weight="0.7"
         android:gravity="bottom|end"
-        android:singleLine="true"
-        android:textSize="14sp" />
+        android:singleLine="true" />
 
     <TextView
         android:id="@+id/itemname_row"
         android:layout_width="0px"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="15dp"
         android:layout_weight="8"
         android:ellipsize="end"
@@ -41,23 +42,23 @@
 
     <ImageButton
         android:id="@+id/move_item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="5dp"
         android:layout_weight="0.1"
-        android:background="@color/background"
+        android:background="@drawable/move"
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:paddingStart="?android:attr/listPreferredItemPaddingStart"
-        android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
-        app:srcCompat="@drawable/move" />
+        android:paddingEnd="?android:attr/listPreferredItemPaddingEnd" />
 
     <ImageButton
         android:id="@+id/delete_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
         android:layout_weight="0.1"
-        android:background="@color/background"
-        android:onClick="onClickRemoveItem"
-        android:src="@drawable/delete_item" />
+        android:background="@drawable/delete_item"
+        android:onClick="onClickRemoveItem" />
 
 </LinearLayout>

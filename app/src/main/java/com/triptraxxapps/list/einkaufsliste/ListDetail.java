@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -47,7 +48,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ListDetail extends AppCompatActivity implements AdapterView.OnItemClickListener, TextWatcher {
+public class ListDetail extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener, TextWatcher {
 
     private static final String TAG = ListDetail.class.getSimpleName();
     public static final int COLOR_GRAY = -6710887;
@@ -116,6 +117,7 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
         adapter.setNotifyOnChange(true);
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(this);
+        listview.setOnItemLongClickListener(this);
         exportImportHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
@@ -435,5 +437,31 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
             shoppingList = storage.getShoppingListById(shoppingList.id);
             bar.setTitle(shoppingList.name);
         }
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        Item i = (Item)parent.getItemAtPosition(position);
+        tvItemName.setText(i.name);
+        tvItemName.setTextColor(i.color);
+        tvItemName.setSelection(i.name.length());
+        tvItemName.requestFocus();
+        textColor = i.color;
+        if(i.amount%1==0)
+            tvItemAmount.setText((int)i.amount+"");
+        else
+            tvItemAmount.setText(i.amount+"");
+        int pos = 0;
+        for(int x = 0; x < unitSpinner.getCount(); x++){
+            String u = unitSpinner.getItemAtPosition(x).toString();
+            if(u.equals(i.unit)){
+                pos = x;
+                break;
+            }
+        }
+        unitSpinner.setSelection(pos);
+        storage.deleteItem(i.id);
+        adapter.remove(i);
+        return true;
     }
 }
