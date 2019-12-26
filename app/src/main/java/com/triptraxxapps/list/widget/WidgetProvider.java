@@ -22,7 +22,6 @@ public class WidgetProvider extends AppWidgetProvider {
     final static String TAG = WidgetProvider.class.getName();
     final static String EXTRA_APPWIDGET_LIST = "appwidgetList";
 
-
     @Override
     public void onRestored(Context context, int[] oldWidgetIds, int[] newWidgetIds) {
         super.onRestored(context, oldWidgetIds, newWidgetIds);
@@ -55,30 +54,48 @@ public class WidgetProvider extends AppWidgetProvider {
                 views.setInt(R.id.widget_msg, "setVisibility", View.VISIBLE);
             }else {
                 views.setInt(R.id.widget_msg, "setVisibility", View.GONE);
-                Intent listIntent = new Intent(context, ListViewWidgetService.class);
-                listIntent.putExtra(EXTRA_APPWIDGET_LIST, listId);
-                listIntent.putExtra("color", color);
-                listIntent.setData(Uri.parse(listIntent.toUri(Intent.URI_INTENT_SCHEME)));
-                views.setRemoteAdapter(R.id.hs_list, listIntent);
             }
+
+            Intent listIntent = new Intent(context, ListViewWidgetService.class);
+            listIntent.putExtra(EXTRA_APPWIDGET_LIST, listId);
+            listIntent.putExtra("color", color);
+            listIntent.setData(Uri.parse(listIntent.toUri(Intent.URI_INTENT_SCHEME)));
+            views.setRemoteAdapter(R.id.hs_list, listIntent);
+
+
+
             intent = new Intent(context, ListDetail.class);
             intent.putExtra("list_id", sl.id);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             int uniqueInt = (int) (System.currentTimeMillis() & 0xfffffff);
             pendingIntent = PendingIntent.getActivity(context, uniqueInt, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            views.setOnClickPendingIntent(R.id.widget_root, pendingIntent);
 
+            views.setOnClickPendingIntent(R.id.appicon, pendingIntent);
+            views.setOnClickPendingIntent(R.id.widget_list_name, pendingIntent);
         }else {
             views.setInt(R.id.widget_msg, "setVisibility", View.VISIBLE);
             //go to app when button is pressed
             intent = new Intent(context, Lists.class);
             pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            views.setOnClickPendingIntent(R.id.widget_root, pendingIntent);
+            views.setOnClickPendingIntent(R.id.appicon, pendingIntent);
+            views.setOnClickPendingIntent(R.id.widget_list_name, pendingIntent);
+            views.setOnClickPendingIntent(R.id.appicon, pendingIntent);
+            views.setOnClickPendingIntent(R.id.widget_msg, pendingIntent);
         }
+        Intent configIntent = new Intent(context, WidgetConfigure.class);
+        configIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+        Uri data = Uri.withAppendedPath(Uri.parse("List" + "://widget/id/"),String.valueOf(appWidgetId));
+        configIntent.setData(data);
+        PendingIntent cfgIntent = PendingIntent.getActivity(context, 0, configIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+        views.setOnClickPendingIntent(R.id.config,cfgIntent);
+
         if(context.getResources().getString(R.string.widget_background_light).equals(color)) {
             views.setInt(R.id.widget_root, "setBackgroundResource", R.color.widgetLight);
         }else if(context.getResources().getString(R.string.widget_background_dark).equals(color)) {
             views.setInt(R.id.widget_root, "setBackgroundResource", R.color.widgetDark);
+        }else if(context.getResources().getString(R.string.widget_background_transparent).equals(color)) {
+            views.setInt(R.id.widget_root, "setBackgroundResource", 0);
         }
         //strike item when item is klicked
         Intent serviceIntent = new Intent(context, WidgetService.class);

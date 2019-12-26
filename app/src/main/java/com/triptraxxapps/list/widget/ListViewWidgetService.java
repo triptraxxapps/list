@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
@@ -49,27 +50,32 @@ class ListViewRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
 
     public RemoteViews getViewAt(int position) {
         RemoteViews rv = new RemoteViews(mContext.getPackageName(), R.layout.rowlayout_widget);
-        Item i = records.get(position);
+        try {
+            Item i = records.get(position);
 
-        if(i.isChecked)
-            rv.setInt(R.id.widget_item, "setPaintFlags", Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
-        else
-            rv.setInt(R.id.widget_item, "setPaintFlags", 0);
-        if(i.color != 0)
-            if(i.color == COLOR_BLUE && color.equals(mContext.getResources().getString(R.string.widget_background_dark)))
-                rv.setInt(R.id.widget_item, "setTextColor", COLOR_BRIGHT_BLUE);
+            if (i.isChecked)
+                rv.setInt(R.id.widget_item, "setPaintFlags", Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
             else
-                rv.setInt(R.id.widget_item, "setTextColor", i.color);
-        else
-            rv.setInt(R.id.widget_item, "setTextColor", ListDetail.COLOR_GRAY);
+                rv.setInt(R.id.widget_item, "setPaintFlags", 0);
+            if (i.color != 0)
+                if (i.color == COLOR_BLUE && color.equals(mContext.getResources().getString(R.string.widget_background_dark)))
+                    rv.setInt(R.id.widget_item, "setTextColor", COLOR_BRIGHT_BLUE);
+                else
+                    rv.setInt(R.id.widget_item, "setTextColor", i.color);
+            else
+                rv.setInt(R.id.widget_item, "setTextColor", ListDetail.COLOR_GRAY);
 
-        rv.setTextViewText(R.id.widget_item, i.name);
-        Bundle extras = new Bundle();
-        extras.putInt(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-        Intent fillInIntent = new Intent();
-        fillInIntent.putExtra(WidgetService.EXTRA_HS_LIST, i.id);
-        fillInIntent.putExtras(extras);
-        rv.setOnClickFillInIntent(R.id.widget_item, fillInIntent);
+            rv.setTextViewText(R.id.widget_item, i.name);
+            Bundle extras = new Bundle();
+            extras.putInt(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+            Intent fillInIntent = new Intent();
+            fillInIntent.putExtra(WidgetService.EXTRA_HS_LIST, i.id);
+            fillInIntent.putExtras(extras);
+            rv.setOnClickFillInIntent(R.id.widget_item, fillInIntent);
+        }catch (IndexOutOfBoundsException ex){
+            ex.printStackTrace();
+            Log.e(TAG, ex.getMessage());
+        }
         return rv;
     }
 

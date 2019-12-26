@@ -47,7 +47,8 @@
     <ListView
         android:id="@+id/widget_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:choiceMode="singleChoice"/>
 
     <!-- Spinner
         android:id="@+id/spn_widget_list"
