@@ -79,6 +79,12 @@ public class WidgetConfigure extends Activity implements AdapterView.OnItemClick
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAndRemoveTask();
+    }
+
     static void savePref(Context context, int appWidgetId, String color, long listId) {
         SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, 0).edit();
         prefs.putString(PREF_PREFIX_KEY_COLOR + appWidgetId, color);
