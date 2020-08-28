@@ -10,6 +10,7 @@
     <string name="check_all">complete all</string>
     <string name="uncheck_all">complete none</string>
     <string name="sort_color">sort colors</string>
+    <string name="sort_name">sort alphabetically</string>
     <string name="itemname_empty">field name must not be empty</string>
     <string name="itemname_exists">This item is already on the list</string>
     <string name="share_list">Share list</string>

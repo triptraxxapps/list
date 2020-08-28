@@ -92,8 +92,6 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
                 return false;
             }
         });
-
-
         Long id = this.getIntent().getLongExtra("list_id", 0);
         shoppingList = storage.getShoppingListById(id);
 
@@ -171,7 +169,14 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
         long id = storage.saveItem(itemName, Float.parseFloat(itemAmount), unit, textColor,false, shoppingList.id);
         sortList(storage.getItemsByList(shoppingList.id));
 
+        int position = 0;
+        for(Item i: items){
+            if(i.id == id)
+                break;
+            position++;
+        }
         adapter.notifyDataSetChanged();
+        listview.setSelection(position);
         tvItemName.setText("");
         tvItemAmount.setText("1");
         unitSpinner.setSelection(0);
@@ -322,6 +327,9 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
             case R.id.action_sort_color:
                 sortItemColor();
                 break;
+            case R.id.action_sort_name:
+                sortItemName();
+                break;
             case android.R.id.home:
                 onBackPressed();
                 break;
@@ -342,10 +350,16 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
         adapter.notifyDataSetChanged();
     }
 
+    private void sortItemName() {
+        Collections.sort(items, Item.NameComparator);
+        adapter.notifyDataSetChanged();
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
         exportImportHandler.removeCallbacks(exportImportRunnable);
+        finish();
     }
 
     @Override

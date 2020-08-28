@@ -34,8 +34,8 @@ public class Storage extends SQLiteOpenHelper {
             Item.ITEM_AMOUNT,
             Item.ITEM_COLOR,
             Item.ITEM_CHECKED,
-            Item.ITEM_LIST,
             Item.ITEM_UNIT,
+            Item.ITEM_LIST,
             Item.ITEM_POSITION
     };
 
@@ -149,7 +149,7 @@ public class Storage extends SQLiteOpenHelper {
             item.isChecked = true;
         else
             item.isChecked = false;
-        item.unit = cursor.getString(6);
+        item.unit = cursor.getString(5);
         item.position = cursor.getInt(7);
         return item;
     }
@@ -177,6 +177,8 @@ public class Storage extends SQLiteOpenHelper {
         daten.put(Item.ITEM_COLOR, color);
         daten.put(Item.ITEM_CHECKED, isChecked);
         daten.put(Item.ITEM_LIST, shoppingListId);
+        daten.put(Item.ITEM_LIST, shoppingListId);
+        daten.put(Item.ITEM_POSITION, "0");
         final long id = dbCon.insertOrThrow(Item.ITEM_TABLE, null, daten);
         dbCon.close();
         return id;
@@ -201,7 +203,6 @@ public class Storage extends SQLiteOpenHelper {
         SQLiteDatabase dbCon = getReadableDatabase();
         Cursor cursor = dbCon.query(Item.ITEM_TABLE, ALL_ITEM_COLUMNS,
                 Item.ITEM_LIST + " = ?", new String[]{Long.toString(listId)}, null, null, Item.ITEM_POSITION+" ASC");
-
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             Item item = cursorToItem(cursor);
@@ -230,7 +231,6 @@ public class Storage extends SQLiteOpenHelper {
         final SQLiteDatabase dbCon = getWritableDatabase();
         dbCon.delete(Item.ITEM_TABLE, Item.ITEM_LIST + " = ?", new String[]{Long.toString(listId)});
         dbCon.delete(ShoppingList.LIST_TABLE, ShoppingList.LIST_ID + " = ?", new String[]{Long.toString(listId)});
-
         dbCon.close();
     }
 

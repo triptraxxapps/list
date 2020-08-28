@@ -10,6 +10,7 @@
     <string name="check_all">Alle erledigen</string>
     <string name="uncheck_all">Keine erledigen</string>
     <string name="sort_color">Nach Farbe sortieren</string>
+    <string name="sort_name">Alphabetisch sortieren</string>
     <string name="itemname_empty">Der Name darf nicht leer sein</string>
     <string name="itemname_exists">Der Gegenstand befindet sich schon auf der Liste</string>
     <string name="share_list">Liste teilen</string>

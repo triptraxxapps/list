@@ -15,7 +15,9 @@
     <item android:id="@+id/action_uncheck_all" android:title="@string/uncheck_all"
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/action_sort_color" android:title="@string/sort_color"
-        android:orderInCategory="100" app:showAsAction="ifRoom" />
+        android:icon="@drawable/sortcolor" android:orderInCategory="100" app:showAsAction="always"/>
+    <item android:id="@+id/action_sort_name" android:title="@string/sort_name"
+        android:icon="@drawable/sortatoz"  android:orderInCategory="100" app:showAsAction="always"/>
     <item android:id="@+id/action_share_list" android:title="@string/share_list"
         android:orderInCategory="100" app:showAsAction="never"
         app:actionProviderClass="androidx.appcompat.widget.ShareActionProvider" />

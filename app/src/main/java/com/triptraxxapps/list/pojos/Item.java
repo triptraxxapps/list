@@ -2,6 +2,8 @@ package com.triptraxxapps.list.pojos;
 
 import androidx.annotation.NonNull;
 
+import java.util.Comparator;
+
 public class Item implements Comparable<Item>{
 
     public long id;
@@ -31,6 +33,13 @@ public class Item implements Comparable<Item>{
     public String toString() {
         return amount + " " + unit + " x " + name;
     }
+
+    public static Comparator<Item> NameComparator = new Comparator<Item>() {
+        @Override
+        public int compare(Item i1, Item i2) {
+            return i1.name.toLowerCase().compareTo(i2.name.toLowerCase());
+        }
+    };
 
     @Override
     public int compareTo(@NonNull Item compareItem) {
