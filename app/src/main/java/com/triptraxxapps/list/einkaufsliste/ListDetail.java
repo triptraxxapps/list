@@ -359,6 +359,11 @@ public class ListDetail extends AppCompatActivity implements AdapterView.OnItemC
     protected void onPause() {
         super.onPause();
         exportImportHandler.removeCallbacks(exportImportRunnable);
+    }
+
+    @Override
+    protected void onUserLeaveHint() {
+        super.onUserLeaveHint();
         finish();
     }
 
